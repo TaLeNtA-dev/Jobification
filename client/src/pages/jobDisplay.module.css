@@ -1,0 +1,128 @@
+.container{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40%;
+    flex-wrap: wrap;
+    border: none;
+    box-shadow: 1px 1px 7px black;
+    background-color: white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 30px auto;
+}
+.img{
+    border-radius: 200px;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    aspect-ratio: 1/1;
+    height: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 200px;
+}
+.text{
+    padding: 30px;
+    padding-top: 0px;
+    margin: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    
+
+}
+.title{
+    justify-self: center;
+    font-weight: bolder;
+    font-size:40px;
+    letter-spacing: 2px;
+    
+}
+.info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    align-items: baseline;
+    margin: 20px auto;
+}
+.h2{
+    margin: 0px;
+    
+}
+.h3{
+    font-weight:400;
+    margin: 0px;
+    margin-left: 5px;
+}
+.actions{
+    display: flex;
+    column-gap: 10px;
+}
+.marked{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px 8px;
+    margin: 5px;
+    width: fit-content;
+    height: 40px;
+    border-radius: 40px;
+    background-color:rgb(55, 147, 246) ;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.unmarked{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px 8px;
+    margin: 5px;
+    width: content;
+    height: 40px;
+    border-radius: 40px;
+    border: solid rgb(22, 66, 225) 2px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.applyButton{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px 8px;
+    margin: 5px;
+    width: content;
+    height: 40px;
+    border-radius: 40px;
+    background-color:rgb(55, 147, 246) ;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+.marked:hover{
+    filter:brightness(80%);
+}
+.marked:active{
+    filter:brightness(60%);
+}
+.unmarked:hover{
+    filter:brightness(80%);
+}
+.unmarked:active{
+    filter:brightness(60%);
+}
+.applyButton:hover{
+    filter:brightness(80%);
+}
+.applyButton:active{
+    filter:brightness(60%);
+}
+
+

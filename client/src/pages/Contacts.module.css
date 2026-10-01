@@ -1,0 +1,21 @@
+.container{
+    height: 91vh;
+    width: 100%;
+    margin: 0px;
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.text {
+    font-family: sans-serif ;
+}
+.button{
+    width: 100px;
+    aspect-ratio: 1/0.4;
+    border-radius: 20px;
+    border: solid rgb(22, 66, 225) 2px;
+    font-weight: bold;
+    font-size: 1.1em;
+}

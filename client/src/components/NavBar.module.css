@@ -1,0 +1,57 @@
+.container{
+    display: flex;
+    height: 8vh;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position:sticky;
+    top: 0px;
+    z-index: 10;
+    border-bottom: solid rgb(114, 112, 112) 1px;
+    min-height: 60px;
+}
+.Nav{
+    text-decoration: none;
+    color: inherit;
+}
+.logo{
+    border-radius: 200px;
+    aspect-ratio: 1/1;
+    height: inherit;
+    box-sizing: content-box;
+    margin: 3px;
+    cursor: pointer;
+}
+.popupMenu{
+    width: 300px;
+    height: fit-content;
+    overflow-y: scroll;
+    box-shadow: 1px 1px 5px black;
+    background-color: white;
+}
+.popupLogo{
+    border-radius: 200px;   
+    aspect-ratio: 1/1;
+    height: 50px;
+    border-radius: 200px;
+    box-sizing: content-box;
+    margin: 3px;
+}
+.popupProfile{
+    max-height: 150px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+.popupTitle{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.popupText{
+    opacity: 70%;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-bottom: 3px;
+}

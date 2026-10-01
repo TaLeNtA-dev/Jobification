@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    border: solid black;
+    margin-top:30px ;
+    margin-bottom:30px ;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    justify-self: center;
+
+}
+.active{
+    filter: brightness(60%) ;
+}
+.a{
+    text-decoration: none;
+    margin: 5px;
+    border: 2px inset rgb(31, 30, 30) ;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgba(23, 119, 255, 0.808);
+    
+}
+.Selected{
+    filter: brightness(40%);
+}

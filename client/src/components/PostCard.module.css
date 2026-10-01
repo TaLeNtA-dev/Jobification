@@ -1,0 +1,103 @@
+.container{
+    width: var(--w, 35%);
+    height:fit-content;
+    box-shadow: 1px 1px 5px rgb(40, 40, 40);
+    border-radius: 10px;
+    overflow:hidden;
+    text-align: left;
+    background-color: rgb(255, 255, 255);
+    box-sizing: content-box;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.media{
+    box-sizing: border-box;
+    width: 100%;
+    justify-self:center;
+    object-fit:contain;
+    height: fit-content;
+    height: var(--h,auto);
+}
+.interact{
+    height: 50px;
+    display: inline-block;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0; 
+}
+.likes{
+    padding: 5px;
+}
+.interactionCount{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+.content{
+    padding-left:20px;
+    padding-right: 20px;
+    height: fit-content;
+
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: fit-content;
+    padding: 10px 10px 20px;
+    box-sizing: border-box;
+    
+}
+.commentingC {
+    display: flex;
+    flex-direction: row;
+    align-items: center;     
+    flex-wrap: nowrap;
+    width: 100%;              
+    gap: 5px;                
+}
+.commentingPfp {
+    width: 40px;    
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+.commentingBox {
+    display: flex;
+    flex-wrap: nowrap;
+    border: solid black 2px;
+    border-radius: 20px;
+    padding: 0;
+    flex: 1 1 0%;  
+    min-width: 0;
+}
+.commentingInput {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    min-height: 40px;
+    padding: 0 12px;
+    background-color: transparent;
+    word-break: break-word;
+    outline: none;
+}
+.commentingButton {
+    flex-shrink: 0;
+    background-color: rgb(55, 147, 246);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    margin: 3px;
+    color: white;
+    cursor: pointer;
+}
+.commentingButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 3px;
+}
+.img{
+    width: 20px;
+    height: max-content;
+    aspect-ratio: 1/1;
+}
+.line{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+.skills{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+}

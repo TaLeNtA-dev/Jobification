@@ -1,0 +1,27 @@
+.postTab{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.postingButton{
+    flex: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: solid black 1px;
+    justify-self: right;
+    text-align: center;
+    background-color:rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 100%;
+    margin-bottom: 30px;
+    min-width: 300px;
+}
+.postingButton:hover{
+    filter: brightness(95%);
+}
+.postingC{
+    display: flex;
+    justify-content: space-around;
+}

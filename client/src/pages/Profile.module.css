@@ -1,0 +1,159 @@
+.tab{
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgb(40, 40, 40);
+    width: 55vw;
+    justify-self: center;
+    background-color:rgb(255, 255, 255);
+    margin: 10px;
+    height: fit-content;
+    min-width: 500px;
+    overflow: hidden;
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.headline{
+    margin:10px auto
+}
+.pics{
+    position: relative;
+    height: 170px;
+    width: 100%;
+    justify-self: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    object-fit: cover;
+}
+.bannerBox{
+    position:absolute;
+    top:0;
+    bottom:20px;
+    overflow: hidden;
+    width: 100%;
+}
+.nameBox{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    top:75px;
+    left:70px;
+    justify-content: center;
+    overflow:hidden;
+    
+}
+.logo{
+    border-radius: 50px;
+    object-fit: cover;
+    width: 6em;
+    height: 6em;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+    object-fit: cover;
+}
+.buttons{
+    display: flex;
+    column-gap: 10px;
+}
+.otherB{
+    width: 100px;
+    aspect-ratio: 1/0.4;
+    border-radius: 20px;
+    border: solid rgb(22, 66, 225) 2px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.otherBfilled{
+    background-color:rgb(55, 147, 246) ;
+    border: none;
+}
+.otherB:hover{
+    filter:brightness(80%);
+}
+.otherB:active{
+    filter:brightness(60%);
+}
+.extraBs{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: rgb(158, 156, 156);
+    display: flex;
+
+}
+.extraB{
+    display: flex;
+    width:25px;
+    border-radius: 200px;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    align-items: center;
+}
+.fBody{
+    margin: 20px;
+}
+.nav{
+    display: flex;
+    align-self:last baseline;
+    border-top: solid black 2px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10%;
+}
+.more{
+    display: flex;
+    border-top: solid black 1px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.aboutTab{
+    padding-bottom: 0px;
+}
+.posts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.jobs{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap:15px;
+    row-gap: 10px;
+
+}
+.postCard {
+    justify-self: center !important;
+    width: 60% !important;
+    margin-bottom: 20px !important;
+}
+
+.add{
+    border-radius: 50px;
+    aspect-ratio: 1/1;
+    float: right;
+    background:transparent;
+    border: hidden;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: opacity(60%);
+    font-size: 120%;
+    margin: 3px;
+    cursor: pointer;
+}

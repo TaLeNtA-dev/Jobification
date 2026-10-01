@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.input{
+    margin: 30px;
+    border-radius: 5px;
+}
+.jobPage{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    gap:2vw;
+}

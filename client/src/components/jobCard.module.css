@@ -1,0 +1,57 @@
+.Card{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    max-height: 35vh;
+    overflow:scroll;
+    flex-wrap: nowrap;
+    aspect-ratio: 0.9/1;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+    align-items: center;
+    text-align: center;
+    justify-content:baseline;
+    background-color: rgb(245, 253, 253);
+    min-height: 200px;
+    scrollbar-width: none;
+}
+.Card:hover{
+    cursor:pointer ;
+}
+
+.img {
+    height: 45%;
+    aspect-ratio: 1/1;
+    border-radius: 200px;
+    margin-top: 5px;
+}
+.cardTitle{
+    font-weight: bold;
+    color:var(--priamry-color);
+    padding: 0px;
+    margin: 5px;
+}
+.companyName{
+    font-weight:500;
+    margin: 3px;
+}
+
+.h4{
+    font-weight: lighter;
+    filter: opacity(80%);
+    margin: 3px;
+}
+
+.Card:hover{
+    filter: brightness(40px);
+}
+.link{
+  all: unset;        
+  cursor: pointer;     
+  display: inline;    
+  color: inherit;     
+}
+
+.bookmark:hover{
+    filter:brightness(60%);
+}

@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+}
+.img{
+    width: 50px;
+    height: max-content;
+    aspect-ratio: 1/1;
+}
+h3{
+    margin: 5px 0px;
+}
+h5{
+    font-weight: 500;
+    margin: 3px  0px;
+}
+p{
+    margin: 0px;
+}

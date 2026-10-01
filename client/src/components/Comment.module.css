@@ -1,0 +1,91 @@
+.container{
+    margin: 10px;
+    border: none;
+    flex-wrap: nowrap;
+    position: relative;
+    box-sizing: border-box;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+}
+.img{
+    width: 40px;
+    height: max-content;
+    aspect-ratio: 1/1;
+    border-radius: 50px;
+}
+.content{
+    font-weight: 500;
+    margin: 3px;
+    margin-left: 20px;
+}
+.pale{
+    opacity: 70%;
+}
+.h4{
+    margin: 3px 0px;
+}
+.h5{
+    font-weight: 500;
+    margin: 3px  0px;
+}
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    aspect-ratio: 1/1;
+    border: none;
+    background-color: transparent;
+    border-radius: 50px;
+    position:absolute;
+    top: 5px;
+    right: 7px;
+    cursor: pointer;
+    padding: 0px;
+}
+.options:hover{
+    background-color: lightgray;
+}
+.editContainer{
+    display: flex;
+    flex-wrap: nowrap;
+    border: solid black 2px;
+    border-radius: 20px;
+    padding: 0;
+    flex: 1 1 0%;  
+    min-width: 0;
+}
+.editInput{
+    flex: 1;
+    min-width: 0;
+    border: none;
+    min-height: 40px;
+    padding: 0 12px;
+    background-color: transparent;
+    word-break: break-word;
+    outline: none;
+}
+.editSave{
+    flex-shrink: 0;
+    color: rgb(55, 147, 246);
+    border: solid rgb(55, 147, 246) 1px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    margin: 3px;
+    cursor: pointer;
+}
+.editCancel{
+    flex-shrink: 0;
+    color: red;
+    border: solid red 1px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    white-space: nowrap;
+    margin: 3px;
+    cursor: pointer;
+}
