@@ -55,13 +55,14 @@ app.use(cors({
   credentials: true
 }));
 app.use(cookieParser());
-
 const db = createPool({
-  host: "localhost",
-  user: "root",
-  password: "123456789",
-  database: "reactdb",
-  connectionLimit: 100,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  ssl: {rejectUnauthorized: false},
+  connectionLimit: 70,
   waitForConnections: true,
   queueLimit: 0
 });
