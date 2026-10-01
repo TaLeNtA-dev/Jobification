@@ -262,14 +262,14 @@ app.post("/signUp", authLimiter, upload.fields([
       );
       const userId = userResult.insertId;
 
-      let logoPublicId = null, logoUrl = null;
+      var logoPublicId = null, logoUrl = null;
       if (logoFile) {
         const result = await uploadFile(logoFile, `users/${userId}/logo`);
         logoPublicId = result.public_id;
         logoUrl = result.url;
       }
 
-      let bannerPublicId = null, bannerUrl = null;
+      var bannerPublicId = null, bannerUrl = null;
       if (bannerFile) {
         const result = await uploadFile(bannerFile, `users/${userId}/banner`);
         bannerPublicId = result.public_id;
@@ -314,6 +314,8 @@ app.post("/signUp", authLimiter, upload.fields([
       });
 
     } catch (err) {
+      deleteFile(logoPublicId);
+      deleteFile(bannerPublicId);
       await connection.rollback();
       console.error('Transaction error:', err);
 
@@ -375,8 +377,8 @@ app.post("/profile/post", upload.fields([{ name: "media", maxCount: 5 }]), async
       return res.status(404).json({ message: "Profile not found" });
     }
 
-    let mediaPublicId = null;
-    let mediaUrl = null;
+    var mediaPublicId = null;
+    var mediaUrl = null;
     if (media) {
       const result = await uploadFile(media, `profiles/${profileId}/posts`);
       mediaPublicId = result.public_id;
@@ -396,6 +398,7 @@ app.post("/profile/post", upload.fields([{ name: "media", maxCount: 5 }]), async
     });
 
   } catch (err) {
+    deleteFile(mediaPublicId)
     console.error('Post error:', err);
     if (connection) {
       await connection.rollback().catch(console.error);
@@ -635,13 +638,13 @@ app.post("/c/create", authLimiter, upload.fields([
     try {
       await connection.beginTransaction();
 
-      let logoPublicId = null;
+      var logoPublicId = null;
       if (logoFile) {
         const result = await uploadFile(logoFile, `companies/${userId}/logo`);
         logoPublicId = result.public_id;
       }
 
-      let bannerPublicId = null;
+      var bannerPublicId = null;
       if (bannerFile) {
         const result = await uploadFile(bannerFile, `companies/${userId}/banner`);
         bannerPublicId = result.public_id;
@@ -673,6 +676,8 @@ app.post("/c/create", authLimiter, upload.fields([
       res.status(201).json({ message: 'Company created successfully', companyURL});
 
     } catch (err) {
+      deleteFile(logoPublicId);
+      deleteFile(bannerPublicId);
       await connection.rollback();
       console.error('Transaction error:', err);
 
@@ -1219,16 +1224,17 @@ app.post("/experience/post", async (req,res)=>{
     return res.status(401).json({message:"Invalid token",err});
   }
   try{
-    let logo
+    var logoPublicId
     if(logoFile) {
       const result= uploadFile(logoFile,"school/logo")
-      logo = (await result).public_id
+      logoPublicId = (await result).public_id
     }
     const [result] = await db.query(`INSERT INTO education (user_id,school,degree,\`field\`,logo,started_at,ended_at) VALUES (?,?,?,?,?,?,?)`,
-      [userId,school,degree,field,logo,startedAt,endedAt]);
+      [userId,school,degree,field,logoPublicId,startedAt,endedAt]);
 
       res.json({message:"seccess",result})
   }catch (error) {
+    deleteFile(logoPublicId);
     console.error('Error adding education:', error);
     res.status(500).json('Internal server error');
   }})
