@@ -8,10 +8,7 @@ import { AuthContext } from "../utiles/AuthProvider";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp as faThumbsUpSolid } from "@fortawesome/free-solid-svg-icons";
-import { faThumbsUp as faThumbsUpRegular } from "@fortawesome/free-regular-svg-icons";
-import { faComment, faRetweet, faShare } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function PostCard({post,width = "",hight=""}){
     const { token } = useContext(AuthContext);
@@ -107,17 +104,17 @@ export default function PostCard({post,width = "",hight=""}){
             </div>
             <div className={Styles.interact}>
                 <div className={Styles.interactionCount} onClick={clickLike}>
-                    <FontAwesomeIcon icon={!likesLoading && likes?.isLiked ? faThumbsUpSolid : faThumbsUpRegular}/>
-                    {!likesLoading && <h5>{likes?.likeCount}</h5>}
+                    <i className={!likesLoading&&likes?.isLiked?"fa-solid fa-thumbs-up":"fa-regular fa-thumbs-up"}></i>
+                    {!likesLoading&&<h5 style={{margin:"0px"}}>{likes?.likeCount}</h5>}
                 </div>
-                <div className={Styles.interactionCount} onClick={() => setOpenComments(!openComments)}>
-                    <FontAwesomeIcon icon={faComment} />
-                </div>
-                <div className={Styles.interactionCount}>
-                    <FontAwesomeIcon icon={faRetweet} />
+                <div className={Styles.interactionCount} onClick={()=>setOpenComments(!openComments)}>
+                    <i className="fa-solid fa-comment"></i>
                 </div>
                 <div className={Styles.interactionCount}>
-                    <FontAwesomeIcon icon={faShare} />
+                    <i className="fa-solid fa-retweet"></i>
+                </div>
+                <div className={Styles.interactionCount}>
+                    <i className="fa-solid fa-share"></i>
                 </div>
             </div>
             
