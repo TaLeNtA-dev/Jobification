@@ -9,11 +9,12 @@ import { useState, useContext,useRef } from 'react';
 import {useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteComment,editComment } from "../utiles/localStorage";
 import useClickOutside from "../utiles/ClickOutside";
+import { timeAgo } from "../utiles/dateUtils";
 
-export default function Comment({comment_id,user_id = null,pfp = null,profile_name = null,disc = "test",content = null,url = null,post_id}) {
+export default function Comment({comment_id,user_id = null,pfp = null,profile_name = null,date,content = null,url = null,post_id}) {
     const queryClient = useQueryClient();
     //authentication
-    
+    const createTime= timeAgo(date)
     const { token } = useContext(AuthContext);
     let id = null;
     if (token) {
@@ -104,7 +105,7 @@ export default function Comment({comment_id,user_id = null,pfp = null,profile_na
             <NavLink style={{ height: "min-content" }} to={url}>
             <h4 className={Styles.h4}>{profile_name}</h4>
             </NavLink>
-            {disc && <h5 className={`${Styles.pale} ${Styles.h5}`}>{disc}</h5>}
+            {createTime && <h5 className={`${Styles.pale} ${Styles.h5}`}>{createTime}</h5>}
         </div>
 
         <button ref={refs.setReference} className={Styles.options} onClick={() => setMenuOpen(!menuOpen)}>⋮</button>
@@ -142,7 +143,7 @@ Comment.propTypes = {
   post_id: PropTypes.number.isRequired,
   img: PropTypes.string,
   profile_name: PropTypes.string.isRequired,
-  disc: PropTypes.string,
+  createTime: PropTypes.string,
   url: PropTypes.string,
   content: PropTypes.string,
   user_id: PropTypes.number,

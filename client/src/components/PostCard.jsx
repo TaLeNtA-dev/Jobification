@@ -129,7 +129,7 @@ export default function PostCard({post,width = "",hight=""}){
                 </div>
                 <InfiniteScroll dataLength={allcomments.length} hasMore={hasNextPage} next={fetchNextPage} >
                 {allcomments.map((c) => (
-                    <Comment key={c.id} post_id={post.id} comment_id={c.id} user_id={c.user_id} pfp={c.pfp} content={c.comment} profile_name={c.profile_name} disc={c?.disc} url={c.userName?c.userName:`/company/${c.company_name}`}></Comment>
+                    <Comment key={c.id} post_id={post.id} comment_id={c.id} user_id={c.user_id} pfp={c.pfp} content={c.comment} profile_name={c.profile_name} date={c.created_at} url={c.userName?c.userName:`/company/${c.company_name}`}></Comment>
                 ))}</InfiniteScroll>
                 </div>}
         </div>
