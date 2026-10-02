@@ -50,8 +50,24 @@ async function getProfileIdFromIdentifier(userId, companyId) {
 
 const app = express();
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://jobification-indol.vercel.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: (origin, callback) => {
+    // allow requests with no origin (Postman, curl, mobile apps)
+    if (!origin) return callback(null, true);
+    // allow whitelisted origins
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    // allow any *.vercel.app preview URL for this project
+    if (/^https:\/\/jobification.*\.vercel\.app$/.test(origin)) {
+      return callback(null, true);
+    }
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true
 }));
 app.use(cookieParser());
