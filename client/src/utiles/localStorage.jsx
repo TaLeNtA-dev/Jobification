@@ -28,7 +28,7 @@ export const userInfo= (userName)=> api.get(`/info/${userName}`).then(res => res
 
 export const profileInfo= (userName)=> api.get(`/${userName}`).then(res => res.data).catch(err => {throw err.response;});
 
-export const getPfp= (id)=> {  const config = id ? { params: { id } } : {};return api.get('/pfp', config).then(res => res.data).catch(err => {throw err.response;});};
+export const getPfp= (id)=> api.get('/pfp', {params:{id}}).then(res => res.data).catch(err => {throw err.response;});
 
 export const postLikes= (id)=> api.get(`/posts/likes`, {params:{id}}).then(res => res.data).catch(err => {throw err.response;});
 

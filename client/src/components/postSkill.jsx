@@ -44,7 +44,7 @@ export default function PostSkill({postingSkill=false,setPostingSkill}){
         }
     })
     const posting = (data)=>{
-        mutate.mutate(data)
+       if(!mutate.isPending) mutate.mutate(data)
     }
 
 
@@ -59,7 +59,7 @@ export default function PostSkill({postingSkill=false,setPostingSkill}){
                 <input type="textarea" {...register("compName")} className="input" placeholder="Company Name"/>
                 <span className="error">{errors.compName?.message} </span>
 
-                <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
+                <button className="submit" disabled={isSubmitting||mutate.isPending}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
             </form>
         </Overlay>
     )

@@ -122,7 +122,7 @@ export default function SignUp(){
         if (data.website) formData.append('website', data.website);
         if (data.bio) formData.append('bio', data.bio);
 
-        mutate.mutate(formData)
+        if(!mutate.isPending) mutate.mutate(formData)
    }
     return(
         <form className="form" onSubmit={handleSubmit(signing)}>
@@ -175,7 +175,7 @@ export default function SignUp(){
 
             <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Signing up...' : 'Submit'}</button>
             <span className="error">{errors.root?.message} </span>
-            <button type="button" className="submit" disabled={isSubmitting} onClick={()=> nav("/login")}>use an existing acount</button>
+            <button type="button" className="submit" disabled={isSubmitting||mutate.isPending} onClick={()=> nav("/login")}>use an existing acount</button>
         </form>
     )
 }

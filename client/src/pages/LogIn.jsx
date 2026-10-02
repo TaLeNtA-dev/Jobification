@@ -41,7 +41,7 @@ function LogIn (){
         }
     })
     const loger= async(user)=>{
-        mutate.mutate(user)
+       if(!mutate.isPending) mutate.mutate(user)
 
    }
     return(
@@ -56,7 +56,7 @@ function LogIn (){
             <span className="error">{errors.password?.message} </span>
             <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Login in...' : 'Login'}</button>
             <span className="error">{errors.root?.message} </span>
-            <button type="button" className="submit" disabled={isSubmitting} onClick={()=> nav("/Signup")}>Creat a new account</button>
+            <button type="button" className="submit" disabled={isSubmitting||mutate.isPending} onClick={()=> nav("/Signup")}>Creat a new account</button>
         </form>
     )
 }

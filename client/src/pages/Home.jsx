@@ -8,6 +8,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../utiles/AuthProvider";
 import { jwtDecode } from "jwt-decode";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { pl } from "zod/v4/locales";
 
 export default function Home() {
   const { token } = useContext(AuthContext);
@@ -21,6 +22,7 @@ export default function Home() {
       console.warn("Invalid token", error);
     }
   }
+  console.log(userName)
   const { data:profile, isLoading:pLoading,} = useQuery({
       queryKey: ['profielInfo', userName],
       queryFn: () => profileInfo(userName),
@@ -50,7 +52,6 @@ export default function Home() {
   const allPosts = data?.pages.flat() ?? [];
 
   const [isPosting, setIsPosting] = useState(false);
-
   return (
     <>
       <div className={Styles.tab}>

@@ -48,7 +48,7 @@ export default function Posting({isPosting , setIsPosting,id=null}){
         if(data.media)formData.append("media",data.media[0]);
         if(id)formData.append("compId",id);
         console.log(formData)
-        mutate.mutate(formData)
+        if(!mutate.isPending)mutate.mutate(formData)
     }
     return(
         <Overlay isOpen ={isPosting}  onClose={()=> setIsPosting(false)}>
@@ -64,7 +64,7 @@ export default function Posting({isPosting , setIsPosting,id=null}){
                 </div>
                 <span className="error">{errors.media?.message} </span>
 
-                <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
+                <button className="submit" disabled={isSubmitting||mutate.isPending}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
             </form>
          </Overlay>
     )

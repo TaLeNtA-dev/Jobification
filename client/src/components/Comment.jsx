@@ -116,7 +116,7 @@ export default function Comment({comment_id,user_id = null,pfp = null,profile_na
             {isOwner ? (
                 <>
                 <h5 onClick={() => {setIsEditing(true);setMenuOpen(false)}} style={{ padding: '2px 8px', cursor: 'pointer' }}>Edit</h5>
-                <h5 onClick={()=>deleteMutation.mutate()} style={{ padding: '2px 8px', cursor: 'pointer', color: 'red' }}> Delete</h5>
+                <h5 onClick={()=>{if(!deleteMutation.isPending) deleteMutation.mutate()}} style={{ padding: '2px 8px', cursor: 'pointer', color: 'red' }}> Delete</h5>
                 </>
             ) : (
                 <h5 style={{ padding: '2px 8px', cursor: 'pointer', color: 'red' }}>Report</h5>

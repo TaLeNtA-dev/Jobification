@@ -57,7 +57,7 @@ export default function PostExperience({postingXP=false,setPostingXP}){
         }
     })
     const posting = (data)=>{
-        mutate.mutate(data)
+        if(mutate.isPending)mutate.mutate(data)
     }
 
 
@@ -85,7 +85,7 @@ export default function PostExperience({postingXP=false,setPostingXP}){
                 <span className="error">{errors.endedAt?.message} </span>
 
         
-                <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
+                <button className="submit" disabled={isSubmitting||mutate.isPending}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
             </form>
         </Overlay>
     )

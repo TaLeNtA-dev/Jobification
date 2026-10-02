@@ -80,7 +80,7 @@ export default function PostEducation({postingEducation=false,setPostingEducatio
     formData.append('endedAt', data.endedAt);
     if (data.logo?.[0]) formData.append('logo', data.logo[0]);
     console.log("submiting")
-    mutate.mutate(formData);
+    if(mutate.isPending)mutate.mutate(formData);
     };
 
 
@@ -114,7 +114,7 @@ export default function PostEducation({postingEducation=false,setPostingEducatio
                 <span className="error">{errors.endedAt?.message} </span>
 
         
-                <button className="submit" disabled={isSubmitting}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
+                <button className="submit" disabled={isSubmitting||mutate.isPending}>{isSubmitting ? 'Posting...' : 'Submit'}</button>
             </form>
         </Overlay>
     )

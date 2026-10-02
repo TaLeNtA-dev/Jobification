@@ -122,7 +122,7 @@ const schema = z.object({
     if (data.location) formData.append('location', data.location);
     if (data.foundingYear) formData.append('foundingYear', data.foundingYear);
         console.log("submiting")
-    mutate.mutate(formData);
+    if(mutate.isPending) mutate.mutate(formData);
     };
 
     return(
@@ -182,7 +182,7 @@ const schema = z.object({
             <input {...register("foundingYear")} type="number" placeholder="Founding Year" className='input'></input>
             <span className='error'>{errors.foundingYear?.message} </span>
 
-            <button className='submit' disabled={isSubmitting}>{isSubmitting ? "Creating..." : "Create Company"}</button>
+            <button className='submit' disabled={isSubmitting||mutate.isPending}>{isSubmitting ? "Creating..." : "Create Company"}</button>
             <span className="error">{errors.root?.message} </span>
 
         </form>

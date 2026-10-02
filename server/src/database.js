@@ -511,7 +511,7 @@ app.get("/pfp",async (req, res)=> {
     id = (await verifyRefreshToken(req.cookies.refreshToken)).sub
     if (!id) return res.status(401).json({ message: "Unauthorized" });
   }
-  const [rows] = await db.query(`SELECT pfp FROM profiles WHERE user_id = id`,[id]);
+  const [rows] = await db.query(`SELECT pfp FROM profiles WHERE user_id = ?`,[id]);
   if (!rows.length) return res.status(404).json({ message: "User not found" });
 
   const pfp = getImageUrl(rows[0].pfp);

@@ -31,7 +31,7 @@ export default function UserSkills() {
   const { data:profile, isLoading:pLoading,} = useQuery({
       queryKey: ['profielInfo', myUserName],
       queryFn: () => profileInfo(myUserName),
-      enabled:isOwner && !!myUserName
+      enabled:isOwner && !!myUserName,
   });
 
   const limit = 9;
