@@ -2,7 +2,7 @@ import Styles from "./PostCard.module.css"
 import PInfo from "./PInfo"
 import { useMutation, useQuery, useQueryClient,useInfiniteQuery } from "@tanstack/react-query"
 import { postLikes,likePost ,dislikePost, getComments, getPfp, addComment} from "../utiles/localStorage"
-import Comment from "./comment";
+import Comment from "./Comment";
 import { useState,useContext } from "react";
 import { AuthContext } from "../utiles/AuthProvider";
 import { jwtDecode } from "jwt-decode";
