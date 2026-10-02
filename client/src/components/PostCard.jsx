@@ -103,7 +103,7 @@ export default function PostCard({post,width = "",hight=""}){
             </div>
             <div className={Styles.interact}>
                 <div className={Styles.interactionCount} onClick={clickLike}>
-                    <i className={!likesLoading&&likes?.isLiked?"fa-solid fa-thumbs-up":"fa-regular fa-thumbs-up"}></i>
+                    <i style={{height:"fit-content"}} className={!likesLoading&&likes?.isLiked?"fa-solid fa-thumbs-up":"fa-regular fa-thumbs-up"}></i>
                     {!likesLoading&&<h5>{likes?.likeCount}</h5>}
                 </div>
                 <div className={Styles.interactionCount} onClick={()=>setOpenComments(!openComments)}>
