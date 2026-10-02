@@ -20,7 +20,8 @@ function NavBar(){
     //fetch profile data
     const{data:p, isLoading:pLoading}=useQuery({
         queryKey:["profileInfo",userName],
-        queryFn: ()=>profileInfo(userName)
+        queryFn: ()=>profileInfo(userName),
+        enabled:!!userName,
     })
 
     //links handle

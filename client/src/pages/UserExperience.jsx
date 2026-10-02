@@ -32,7 +32,7 @@ export default function UserExperience() {
   const { data:profile, isLoading:pLoading,} = useQuery({
       queryKey: ['profielInfo', myUserName],
       queryFn: () => profileInfo(myUserName),
-      enabled:isOwner
+      enabled:isOwner && !!myUserName
   });
 
   const limit = 9;

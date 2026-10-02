@@ -24,6 +24,7 @@ export default function Home() {
   const { data:profile, isLoading:pLoading,} = useQuery({
       queryKey: ['profielInfo', userName],
       queryFn: () => profileInfo(userName),
+      enabled:!!userName,
   });
 
   const limit = 9;

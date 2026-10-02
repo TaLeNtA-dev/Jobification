@@ -58,6 +58,7 @@ export default function Profile(){
     const { data:profile, isLoading:pLoading,} = useQuery({
         queryKey: ['profielInfo', userName],
         queryFn: () => profileInfo(userName),
+        enabled:!!userName,
     });
 
     const { data:followers, isLoading:followersLoading,refetch:followersRefetch} = useQuery({
