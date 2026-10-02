@@ -6,9 +6,9 @@ import { jwtDecode } from "jwt-decode";
 import PropTypes from "prop-types";
 import { useFloating, autoUpdate, offset, flip, shift,useDismiss,useInteractions } from '@floating-ui/react';
 import { useState, useContext,useRef } from 'react';
-import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import {useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteComment,editComment } from "../utiles/localStorage";
-import useClickOutside from "../utiles/ClickOutSide";
+import useClickOutside from "../utiles/ClickOutside";
 
 export default function Comment({comment_id,user_id = null,pfp = null,profile_name = null,disc = "test",content = null,url = null,post_id}) {
     const queryClient = useQueryClient();
