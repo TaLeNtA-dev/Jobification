@@ -1316,3 +1316,13 @@ app.post("/experience/post", async (req,res)=>{
   })
   
 app.listen(3000);
+
+// Keep Aiven alive — ping every 5 minutes
+setInterval(async () => {
+  try {
+    await db.query('SELECT 1');
+    console.log('DB keep-alive ping OK');
+  } catch (err) {
+    console.error('DB keep-alive failed:', err.message);
+  }
+}, 5 * 60 * 1000); 
