@@ -162,10 +162,10 @@ export default function Profile(){
                 </NavLink>}
             </div>}
 
-            <div className={Styles.tab} >
+            {(isOwner||experience) &&<div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingXP(true)}>+</button>}
                 <h1>Experience</h1>
-                {experience?.length>0&&experience.map((e,i,a)=>{return(
+                {experience&&experience.map((e,i,a)=>{return(
                     <div key={e.user_id}>
                      <PInfo howOld={false} img ={e.pfp} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
@@ -176,12 +176,12 @@ export default function Profile(){
                         <h3>See More ...</h3>
                     </div>
                     </NavLink>}
-            </div>
+            </div>}
 
-            <div className={Styles.tab} >
+            {(isOwner||education)&&<div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingEducation(true)}>+</button>}
                 <h1>Education</h1>
-                {education?.length>0&&education.map((e,i,a)=>{return (
+                {education&&education.map((e,i,a)=>{return (
                     <div key={e.user_id}>
                      <PInfo howOld={false} img ={e.logo} title={e.school}  desc={`${e.degree} ${e.field}`} date={timestamp(e.started_at,e.ended_at)}/>
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
@@ -192,17 +192,17 @@ export default function Profile(){
                         <h3>See More ...</h3>
                     </div>
                 </NavLink>}
-            </div>
+            </div>}
 
             {/*<div className={Styles.tab} >
                 <h1>Liecneces</h1>
                 {false && data.map((e)=>{return <PInfo img ={e.pfp} url={e.userName} title={e.profile_name} key={e.user_id}/>})}
             </div>*/}
 
-            <div className={Styles.tab} >
+            {(isOwner||skills)&&<div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingSkill(true)}>+</button>}
                 <h1>Skills</h1>
-                {skills?.length>0&& skills.map((e,i,a)=>{return (
+                {skills&& skills.map((e,i,a)=>{return (
                     <div key={e.id}>
                      <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP} />
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
@@ -213,7 +213,7 @@ export default function Profile(){
                         <h3>See More ...</h3>
                     </div>
                     </NavLink>}
-            </div>
+            </div>}
             {/*<div className={Styles.tab} >
                 <h1>Interests</h1>
                 {false && interests.voices.map((e)=>{return <PInterest />})}
