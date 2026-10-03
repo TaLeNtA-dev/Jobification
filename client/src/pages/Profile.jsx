@@ -165,7 +165,7 @@ export default function Profile(){
             <div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingXP(true)}>+</button>}
                 <h1>Experience</h1>
-                {experience&&experience.map((e,i,a)=>{return(
+                {experience?.length>0&&experience.map((e,i,a)=>{return(
                     <div key={e.user_id}>
                      <PInfo howOld={false} img ={e.pfp} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
@@ -181,7 +181,7 @@ export default function Profile(){
             <div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingEducation(true)}>+</button>}
                 <h1>Education</h1>
-                {education&&education.map((e,i,a)=>{return (
+                {education?.length>0&&education.map((e,i,a)=>{return (
                     <div key={e.user_id}>
                      <PInfo howOld={false} img ={e.logo} title={e.school}  desc={`${e.degree} ${e.field}`} date={timestamp(e.started_at,e.ended_at)}/>
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
@@ -202,7 +202,7 @@ export default function Profile(){
             <div className={Styles.tab} >
                 {isOwner&&<button className={Styles.add} onClick={()=>setPostingSkill(true)}>+</button>}
                 <h1>Skills</h1>
-                {skills&& skills.map((e,i,a)=>{return (
+                {skills?.length>0&& skills.map((e,i,a)=>{return (
                     <div key={e.id}>
                      <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP} />
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
