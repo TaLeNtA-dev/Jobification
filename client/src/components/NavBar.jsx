@@ -74,10 +74,10 @@ return (
             <NavLink className={styles.Nav} to="">HOME</NavLink>
             <NavLink className={styles.Nav} to={!inHome ? "/jobs/1" : link.pathname}>JOBS</NavLink>
             <NavLink className={styles.Nav} to="contacts">CONTACTS</NavLink>
-            {!pLoading&&<img ref={pfpRef} className={styles.logo} src={p?.pfp} alt="PFP" onClick={()=>setPfpPopUp(!pfpPopUp)}/>}
+            {!pLoading&&<img ref={pfpRef} className={styles.logo} src={p?.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt="PFP" onClick={()=>setPfpPopUp(!pfpPopUp)}/>}
                 {pfpPopUp &&<div ref={popupRef} style={{position: 'fixed',top: pos.top,left: pos.left,}} className={styles.popupMenu}>
                     <div className={styles.popupProfile} onClick={()=>nav(`/${userName}`)}>
-                        <img className={styles.popupLogo} src={p?.pfp} alt="PFP"/>
+                        <img className={styles.popupLogo} src={p?.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt="PFP"/>
                         <div className={styles.popupTitle}>
                             <h4 style={{fontWeight:"bold",margin:"5px"}}>{p?.profile_name}</h4>
                             <h4 style={{fontWeight:"lighter",margin:"5px"}}>{p?.bio}</h4>
