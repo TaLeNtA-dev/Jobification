@@ -2,7 +2,7 @@ import styles from "./Pskill.module.css"
 
 
 
-function Pskill ({title,compName,compPFP}){
+function Pskill ({title,compName,compPFP="https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"}){
     
     
     return(

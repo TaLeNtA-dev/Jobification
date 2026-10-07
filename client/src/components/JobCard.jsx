@@ -10,7 +10,7 @@ function Card({job}){
   return(
     job && (
         <div className={Styles.Card} onClick={()=>navigate(`/job/${job.id}`)}>
-            <img className={Styles.img} src={job.pfp} alt={`${job.company} logo`} />
+            <img className={Styles.img} src={job.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt={`${job.company} logo`} />
             <h3 className= {Styles.cardTitle}>{job.title}</h3>
             {job?.companyName&&<h4 className={Styles.companyName}>{job.companyName}</h4>}
             <h4 className={Styles.h4}>{job.location} lo ({job?.type.trim()})</h4>

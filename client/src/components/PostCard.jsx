@@ -97,7 +97,7 @@ export default function PostCard({post,width = "",hight=""}){
     return(
         <div className={Styles.container} style={{ "--w": width,"--h": hight }}>
             <div className={Styles.content}>
-                <PInfo img={post.pfp} title={post.profile_name} desc={post?.disc} date={post.created_at} location={post?.location} 
+                <PInfo img={post.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} title={post.profile_name} desc={post?.disc} date={post.created_at} location={post?.location} 
                     url={post?.companyURL? `/company/${post?.companyURL}`:`/${post?.userName}`} hr={false}/>
                 <p className={Styles.caption}>{post.caption}</p>
                 {post.media && <img className={Styles.media} src={post.media}></img>}
@@ -121,7 +121,7 @@ export default function PostCard({post,width = "",hight=""}){
             {openComments&&<div className={Styles.comments}>
                 
                 <div className={Styles.commentingC}>
-                    <img className={Styles.commentingPfp} src={!pfpLoading?pfp:undefined} alt="profile" onClick={()=>nav(`/${userName}`)} />
+                    <img className={Styles.commentingPfp} src={!pfpLoading?pfp:undefined||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt="profile" onClick={()=>nav(`/${userName}`)} />
                     <form className={Styles.commentingBox} onSubmit={handleSubmitComment}>
                         <input type="text" placeholder="Comment" onChange={(c)=>setMyComment(c.target.value)} value={myComment} className={Styles.commentingInput}/>
                         <button type="submit" disabled={!myComment?.trim() || commentMutation.isPending} className={Styles.commentingButton}>Comment</button>

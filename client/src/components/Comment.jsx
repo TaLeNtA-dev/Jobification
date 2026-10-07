@@ -11,7 +11,7 @@ import { deleteComment,editComment } from "../utiles/localStorage";
 import useClickOutside from "../utiles/ClickOutside";
 import { timeAgo } from "../utiles/dateUtils";
 
-export default function Comment({comment_id,user_id = null,pfp = null,profile_name = null,date,content = null,url = null,post_id}) {
+export default function Comment({comment_id,user_id = null,pfp = "https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg",profile_name = null,date,content = null,url = null,post_id}) {
     const queryClient = useQueryClient();
     //authentication
     const createTime= timeAgo(date)
