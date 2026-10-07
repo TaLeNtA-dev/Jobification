@@ -65,7 +65,7 @@ export default function UserSkills() {
             {isOwner&&<button className={Styles.add} onClick={()=>setPostingXP(true)}>+</button>}
             {allPosts&&allPosts.map((e,i,a)=>{return(
             <div key={e.id}>
-                <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP} />
+                <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} />
                 {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
             </div>
             )})}

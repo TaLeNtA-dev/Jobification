@@ -88,7 +88,7 @@ function CompProfile() {
             <img className={Styles.banner} src={data.banner} alt="banner" />
           </div>
           <div className={Styles.nameBox}>
-            <img src={data.pfp} className={Styles.logo} alt="logo" />
+            <img src={data.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} className={Styles.logo} alt="logo" />
           </div>
           <div className={Styles.extraBs}>
             <button className={Styles.extraB}>

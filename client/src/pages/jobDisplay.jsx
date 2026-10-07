@@ -45,7 +45,7 @@ function JobDisplay() {
 
   return (
     <div className={Styles.container}>
-      <img className={Styles.img} src={job.pfp} alt={job.company} />
+      <img className={Styles.img} src={job.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt={job.company} />
       <div className={Styles.text}>
         <h1 className={Styles.title}>{job.title}</h1>
         <div className={Styles.info}><h2 className={Styles.h2}>company:</h2> <h3 className={Styles.h3}>{job.companyName}</h3></div>

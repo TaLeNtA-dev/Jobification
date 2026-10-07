@@ -54,7 +54,7 @@ export default function UserPosts() {
        {isOwner&&<div className={Styles.tab}>
        <>
         <div className={Styles.postingC}>    
-            <NavLink to={`/${myUserName}`}><img className={Styles.pfp} src={!pLoading?profile.pfp:undefined} alt="profile" /></NavLink>
+            <NavLink to={`/${myUserName}`}><img className={Styles.pfp} src={!pLoading?profile.pfp:"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt="profile" /></NavLink>
             <button className={Styles.postingButton}onClick={() => setIsPosting(true)}>Start a Post</button>
         </div>
           <div className={Styles.postingC}>

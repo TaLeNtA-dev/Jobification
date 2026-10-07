@@ -66,7 +66,7 @@ export default function UserExperience() {
             {isOwner&&<button className={Styles.add} onClick={()=>setPostingXP(true)}>+</button>}
             {allPosts&&allPosts.map((e,i,a)=>{return(
                 <div key={e.user_id}>
-                <PInfo howOld={false} img ={e.pfp} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
+                <PInfo howOld={false} img ={e.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
                 {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
                 </div>
                 )})}

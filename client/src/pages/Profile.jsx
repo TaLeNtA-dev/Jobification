@@ -125,7 +125,7 @@ export default function Profile(){
                         <img className={Styles.banner}  src={!pLoading?profile.banner:undefined}></img>
                     </div>
                     <div className={Styles.nameBox}>
-                        <img src={!pLoading?profile.pfp:undefined} className={Styles.logo}></img>
+                        <img src={!pLoading?profile.pfp:"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} className={Styles.logo}></img>
                     </div>
                     <div className={Styles.extraBs}>
                         <button className={Styles.extraB}>
@@ -167,7 +167,7 @@ export default function Profile(){
                 <h1>Experience</h1>
                 {experience&&experience.map((e,i,a)=>{return(
                     <div key={e.user_id}>
-                     <PInfo howOld={false} img ={e.pfp} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
+                     <PInfo howOld={false} img ={e.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} title={e.title}  desc={e.description} date={timestamp(e.started_at,e.ended_at)}/>
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
                     </div>
                     )})}
@@ -196,7 +196,7 @@ export default function Profile(){
 
             {/*<div className={Styles.tab} >
                 <h1>Liecneces</h1>
-                {false && data.map((e)=>{return <PInfo img ={e.pfp} url={e.userName} title={e.profile_name} key={e.user_id}/>})}
+                {false && data.map((e)=>{return <PInfo img ={e.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} url={e.userName} title={e.profile_name} key={e.user_id}/>})}
             </div>*/}
 
             {(isOwner||skills)&&<div className={Styles.tab} >
@@ -204,7 +204,7 @@ export default function Profile(){
                 <h1>Skills</h1>
                 {skills&& skills.map((e,i,a)=>{return (
                     <div key={e.id}>
-                     <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP} />
+                     <Pskill title={e.title} compName={e.compName} compPFP={e?.compPFP||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} />
                      {i!=a.length-1&&<hr style={{width:"100%",filter:"opacity:60%" ,hight:"1px"}}/>}
                     </div>
                     )})}
