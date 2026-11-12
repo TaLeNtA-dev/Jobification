@@ -127,6 +127,8 @@ const schema = z.object({
 
     return(
         <form className='form'  onSubmit={handleSubmit(create)}>
+            <h1 >Create your Company</h1>
+
             <label className='label'>Page Name</label>
             <input {...register("pageName")} type="text" placeholder="Page Name" className='input'></input>
             <span className='error'>{errors.pageName?.message} </span>
