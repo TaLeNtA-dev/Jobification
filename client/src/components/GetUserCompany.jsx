@@ -11,7 +11,7 @@ export default function GetUserCompany(){
         
     })
     useEffect(()=>{
-        if(isSuccess&&data?.companyURL) nav(`/company/${data?.companyURL}`)
+        if(!isLoading&&isSuccess&&data?.companyURL) nav(`/company/${data?.companyURL}`)
     },[data,isSuccess])
     return(
         <h1>LOADING...</h1>
