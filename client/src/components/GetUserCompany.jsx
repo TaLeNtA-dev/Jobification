@@ -3,17 +3,22 @@ import { getMyCompany } from "../utiles/localStorage"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-export default function GetUserCompany(){
-    const nav = useNavigate()
-    const {data,isLoading,isSuccess}=useQuery({
-        queryKey:["myCompany"],
-        queryFn:getMyCompany,
-        
-    })
-    useEffect(()=>{
-        if(!isLoading&&isSuccess&&data?.companyURL) nav(`/company/${data?.companyURL}`)
-    },[data,isSuccess])
-    return(
-        <h1>LOADING...</h1>
-    )
+export default function GetUserCompany() {
+  const nav = useNavigate()
+  const { data, isPending, isError, error, isSuccess } = useQuery({
+    queryKey: ["myCompany"],
+    queryFn: getMyCompany,
+    retry: false,
+  })
+
+  useEffect(() => {
+    if (isSuccess && data?.companyURL) {
+      nav(`/company/${data.companyURL}`)
+    }
+  }, [data, isSuccess, nav])
+
+  if (isPending) return <h1>LOADING...</h1>
+  if (isError||!data?.companyURL)  nav(`/company/create`)
+
+  return <h1>LOADING...</h1>
 }

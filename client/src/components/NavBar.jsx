@@ -74,7 +74,7 @@ return (
             <NavLink className={styles.Nav} to="">HOME</NavLink>
             <NavLink className={styles.Nav} to={!inHome ? "/jobs/1" : link.pathname}>JOBS</NavLink>
             
-            <NavLink to="Company"><h5 className={styles.Nav}>Company</h5></NavLink>
+            <NavLink className={styles.Nav} to="Company">COMPANY</NavLink>
             <img ref={pfpRef} className={styles.logo} src={p?.pfp||"https://i.pinimg.com/originals/74/a3/b6/74a3b6a8856b004dfff824ae9668fe9b.jpg"} alt="PFP" onClick={()=>setPfpPopUp(!pfpPopUp)}/>
                 {pfpPopUp &&<div ref={popupRef} style={{position: 'fixed',top: pos.top,left: pos.left,}} className={styles.popupMenu}>
                     <div className={styles.popupProfile} onClick={()=>nav(`/${userName}`)}>
