@@ -1,9 +1,17 @@
 import axios from "axios";
-export const api = axios.create({
-baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
-timeout: 10000,
-withCredentials: true
-})
+const API_DIRECT = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+export const api = axios.create({          
+  baseURL: API_DIRECT,
+  timeout: 10000,
+});
+
+export const authApi = axios.create({
+  baseURL: import.meta.env.VITE_AUTH_URL || 'http://localhost:3000',
+  timeout: 10000,
+  withCredentials: true,
+});
+
 export const offerJob = (data) => api.post("/offer",data).then(res => res.data).catch(err => {throw {
 status: err.response?.status || 500,
 message: err.response?.data || "An unknown error occurred",};})
@@ -12,11 +20,11 @@ export const getJobs = (page = 1, limit = 9,filter=undefined,category="title") =
 
 export const getJob =(jobId) => api.get(`/job/${jobId}`).then(res => res.data).catch(err => {throw err.response;});
 
-export const login= (user) => api.post(`/api/login`,user).then(res => res.data).catch(err => {throw err.response;});
+export const login= (user) => authApi.post(`/login`,user).then(res => res.data).catch(err => {throw err.response;});
 
-export const getToken =()=> api.get(`/api/refresh`).then(res => res.data).catch(err => {throw err.response;});
+export const getToken =()=> authApi.get(`/api/refresh`).then(res => res.data).catch(err => {throw err.response;});
 
-export const signUp= (user) => api.post(`api//signUp`,user).then(res => res.data).catch(err => {throw err.response;});
+export const signUp= (user) => authApi.post(`/signUp`,user).then(res => res.data).catch(err => {throw err.response;});
 
 export const post= (post) => api.post(`/profile/post`,post).then(res => res.data).catch(err => {throw err.response;});
 

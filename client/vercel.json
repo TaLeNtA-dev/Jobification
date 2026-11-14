@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://your-app.onrender.com/api/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/login",       "destination": "https://jobification.onrender.com/login" },
+    { "source": "/signUp",      "destination": "https://jobification.onrender.com/signUp" },
+    { "source": "/api/refresh", "destination": "https://jobification.onrender.com/api/refresh" },
+    { "source": "/(.*)",        "destination": "/index.html" }
   ]
 }
