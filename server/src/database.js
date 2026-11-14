@@ -85,7 +85,7 @@ const db = createPool({
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 
-app.get("/jobs", async (req, res) => {
+app.get("/api/jobs", async (req, res) => {
   const page = parseInt(req.query.page, 10) || 1;
   const limit = parseInt(req.query.limit, 10) || 9;
   const offset = (page - 1) * limit;
@@ -127,7 +127,7 @@ app.get("/jobs", async (req, res) => {
   }
 });
 
-app.get("/job/:jobId", async (req, res) => {
+app.get("/api/job/:jobId", async (req, res) => {
   const { jobId } = req.params;
 
   if (!jobId || isNaN(Number(jobId))) {
@@ -179,7 +179,7 @@ app.get("/job/:jobId", async (req, res) => {
   }
 });
 
-app.post("/offer", async (req, res) => {
+app.post("/api/offer", async (req, res) => {
   try {
     const {
       title, company, location, salary, type, category,
@@ -209,7 +209,7 @@ app.post("/offer", async (req, res) => {
   }
 });
 
-app.post("/login", authLimiter, async (req, res) => {
+app.post("/api/login", authLimiter, async (req, res) => {
   const { password, email } = req.body;
   if (!email || !password) return res.status(400).json('Email or password are required');
 
@@ -249,7 +249,7 @@ app.post("/login", authLimiter, async (req, res) => {
   }
 });
 
-app.post("/signUp", authLimiter, upload.fields([
+app.post("/api/signUp", authLimiter, upload.fields([
   { name: 'logo', maxCount: 1 },
   { name: 'banner', maxCount: 1 }
 ]), async (req, res) => {
@@ -353,8 +353,6 @@ app.post("/signUp", authLimiter, upload.fields([
 app.get("/api/refresh", async (req, res) => {
   try {
     const payload = await verifyRefreshToken(req.cookies.refreshToken);
-    console.log("refreshToken",req.cookies.refreshToken)
-    console.log("payload",payload)
     const [rows] = await db.query('SELECT userName FROM users WHERE id = ?', [payload.sub]);
 
     if (rows.length === 0) {
@@ -369,7 +367,7 @@ app.get("/api/refresh", async (req, res) => {
   }
 });
 
-app.post("/profile/post", upload.fields([{ name: "media", maxCount: 5 }]), async (req, res) => {
+app.post("/api/profile/post", upload.fields([{ name: "media", maxCount: 5 }]), async (req, res) => {
   const caption = req.body?.caption || null;
   const compId = req.body?.compId || null;
   const media = req.files?.media?.[0];
@@ -434,7 +432,7 @@ app.post("/profile/post", upload.fields([{ name: "media", maxCount: 5 }]), async
   }
 });
 
-app.get("/posts/:postId/comments", async (req, res) => {
+app.get("/api/posts/:postId/comments", async (req, res) => {
   const { postId } = req.params;
   const page = parseInt(req.query.page, 10) || 1;
   const limit = parseInt(req.query.limit, 10) || 10;
@@ -457,7 +455,7 @@ app.get("/posts/:postId/comments", async (req, res) => {
   }
 });
 
-app.get("/posts", async (req, res) => {
+app.get("/api/posts", async (req, res) => {
   const page = parseInt(req.query.page, 10) || 1;
   const limit = parseInt(req.query.limit, 10) || 10;
   const companyId = parseInt(req.query.compid, 10) || null;
@@ -493,7 +491,7 @@ app.get("/posts", async (req, res) => {
   }
 });
 
-app.get("/info/:userName",async (req, res)=> {
+app.get("/api/info/:userName",async (req, res)=> {
   const userName = req.params.userName;
   try{
     const [infos] = await db.query(`SELECT 
@@ -506,7 +504,7 @@ app.get("/info/:userName",async (req, res)=> {
 }
 })
 
-app.get("/pfp",async (req, res)=> {
+app.get("/api/pfp",async (req, res)=> {
   let id= req.query.id
   try{
   if(!id) {
@@ -523,7 +521,7 @@ app.get("/pfp",async (req, res)=> {
     return res.status(500).json({ message: "couldn't reach the database or token" });
 }})
 
-app.get("/:userName",async (req, res)=> {
+app.get("/api/:userName",async (req, res)=> {
   const userName = req.params.userName;
   try{
     const [[profile]] = await db.query(`SELECT 
@@ -536,7 +534,7 @@ app.get("/:userName",async (req, res)=> {
   return res.status(500).json({ message: "couldn't reach the database" });
 }})
 
-app.get("/posts/likes",async (req, res)=> {
+app.get("/api/posts/likes",async (req, res)=> {
   const postId = req.query?.id
   try{
   const userId = (await verifyRefreshToken(req.cookies.refreshToken)).sub
@@ -554,7 +552,7 @@ app.get("/posts/likes",async (req, res)=> {
   }
 })
 
-app.post("/posts/likes", async (req, res) => {
+app.post("/api/posts/likes", async (req, res) => {
   const postId = req.query?.id;
   if (!postId) {
     return res.status(400).json({ message: "Post ID is required" });
@@ -579,7 +577,7 @@ app.post("/posts/likes", async (req, res) => {
   }
 });
 
-app.delete("/posts/likes", async (req, res) => {
+app.delete("/api/posts/likes", async (req, res) => {
   const postId = req.query?.id;
   if (!postId) {
     return res.status(400).json({ message: "Post ID is required" });
@@ -602,7 +600,7 @@ app.delete("/posts/likes", async (req, res) => {
   }
 });
 
-app.get("/posts/:userName", async (req, res) => {
+app.get("/api/posts/:userName", async (req, res) => {
   const page  = Math.max(parseInt(req.query.page, 10) || 1, 1);
   const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 10, 1), 100); 
   const offset = (page - 1) * limit;
@@ -621,7 +619,7 @@ app.get("/posts/:userName", async (req, res) => {
   }
 });
 
-app.post("/c/create", authLimiter, upload.fields([
+app.post("/api/c/create", authLimiter, upload.fields([
   { name: 'logo', maxCount: 1 },
   { name: 'banner', maxCount: 1 }
 ]), async (req, res) => {
@@ -716,7 +714,7 @@ app.post("/c/create", authLimiter, upload.fields([
   }
 });
 
-app.get("/c/user/myCompany", async (req, res) => {
+app.get("/api/c/user/myCompany", async (req, res) => {
   let currentUserId = null;
   try {
     const token = req.cookies.refreshToken;
@@ -748,7 +746,7 @@ app.get("/c/user/myCompany", async (req, res) => {
   }
 });
 
-app.get("/c/:companyURL", publicLimiter, async (req, res) => {
+app.get("/api/c/:companyURL", publicLimiter, async (req, res) => {
   const { companyURL } = req.params;
   if (!companyURL) return res.status(400).json('Missing company URL');
 
@@ -784,7 +782,7 @@ app.get("/c/:companyURL", publicLimiter, async (req, res) => {
   }
 });
 
-app.get("/c/jobs/:id", async (req, res) => {
+app.get("/api/c/jobs/:id", async (req, res) => {
   const { id } = req.params;
   const limit = parseInt(req.query.limit) || 5;
   const page = parseInt(req.query.page) || 1;
@@ -837,7 +835,7 @@ app.get("/c/jobs/:id", async (req, res) => {
   }
 });
 
-app.get("/c/myCompanies", async (req, res) => {
+app.get("/api/c/myCompanies", async (req, res) => {
   let currentUserId = null;
   try {
     const token = req.cookies.refreshToken;
@@ -874,7 +872,7 @@ app.get("/c/myCompanies", async (req, res) => {
   }
 });
 
-app.get("/profile/followers", async (req, res) => {
+app.get("/api/profile/followers", async (req, res) => {
   const { userId, companyId } = req.query;
   const targetProfileId = await getProfileIdFromIdentifier(userId, companyId);
 
@@ -904,7 +902,7 @@ app.get("/profile/followers", async (req, res) => {
   });
 });
 
-app.post("/profile/follow", async (req, res) => {
+app.post("/api/profile/follow", async (req, res) => {
   const { userId, companyId } = req.body;
 
   const token = req.cookies.refreshToken;
@@ -938,7 +936,7 @@ app.post("/profile/follow", async (req, res) => {
   }
 });
 
-app.delete("/profile/unfollow", async (req, res) => {
+app.delete("/api/profile/unfollow", async (req, res) => {
   const { userId, companyId } = req.query;
 
   const token = req.cookies.refreshToken;
@@ -962,7 +960,7 @@ app.delete("/profile/unfollow", async (req, res) => {
   res.json({ message: "Unfollowed successfully" });
 });
 
-app.post("/bookmark", async (req, res) => {
+app.post("/api/bookmark", async (req, res) => {
   const { jobId } = req.body;
   try {
     const userId = (await verifyRefreshToken(req.cookies.refreshToken)).sub;
@@ -976,7 +974,7 @@ app.post("/bookmark", async (req, res) => {
   }
 });
 
-app.delete("/bookmark", async (req, res) => {
+app.delete("/api/bookmark", async (req, res) => {
   const { jobId } = req.query;
   try{
     const userId = (await verifyRefreshToken(req.cookies.refreshToken)).sub;
@@ -993,7 +991,7 @@ app.delete("/bookmark", async (req, res) => {
   
 });
 
-app.get("/:userName/bookmarked", async (req, res) => {
+app.get("/api/:userName/bookmarked", async (req, res) => {
   const { userName } = req.params;
   const page = parseInt(req.query.page, 10) || 1;
   const limit = parseInt(req.query.limit, 10) || 9;
@@ -1057,7 +1055,7 @@ app.get("/:userName/bookmarked", async (req, res) => {
   }
 });
 
-app.get("/comments/:commentId/replies", async (req, res) => {
+app.get("/api/comments/:commentId/replies", async (req, res) => {
   const { commentId } = req.params;
 
   try {
@@ -1081,7 +1079,7 @@ app.get("/comments/:commentId/replies", async (req, res) => {
   }
 });
 
-app.post("/comments", async (req, res) => {
+app.post("/api/comments", async (req, res) => {
   const { postId, parentCommentId, comment } = req.body;
   let profileId;
   try {
@@ -1121,7 +1119,7 @@ app.post("/comments", async (req, res) => {
   }
 });
 
-app.delete("/comments/:commentId", async (req, res) => {
+app.delete("/api/comments/:commentId", async (req, res) => {
   const { commentId } = req.params;
   let profileId;
   try {
@@ -1147,7 +1145,7 @@ app.delete("/comments/:commentId", async (req, res) => {
   }
 });
 
-app.put("/comments/:commentId", async (req, res) => {
+app.put("/api/comments/:commentId", async (req, res) => {
   const { commentId } = req.params;
   const { comment } = req.body; 
 
@@ -1196,7 +1194,7 @@ app.put("/comments/:commentId", async (req, res) => {
   }
 });
 
-app.post("/experience/post", async (req,res)=>{
+app.post("/api/experience/post", async (req,res)=>{
   const {userName,companyName,startedAt,endedAt=null,desc,title}=req.body
   try{
     const [result] = await db.query(`INSERT INTO experience (user_id,company_name,title,description,started_at,ended_at) VALUES ((Select id from users where userName=?),?,?,?,?,?)`,
@@ -1211,7 +1209,7 @@ app.post("/experience/post", async (req,res)=>{
     res.status(500).json('Internal server error');
   }})
 
-  app.get("/experience/get", async (req,res)=>{
+  app.get("/api/experience/get", async (req,res)=>{
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 3;
     const userName = req.query.userName;
@@ -1229,7 +1227,7 @@ app.post("/experience/post", async (req,res)=>{
     res.status(500).json('Internal server error');
   }})
 
-  app.post("/education/post", authLimiter, upload.fields([{ name: 'logo', maxCount: 1 },]), async (req,res)=>{
+  app.post("/api/education/post", authLimiter, upload.fields([{ name: 'logo', maxCount: 1 },]), async (req,res)=>{
   const {school,degree,field,startedAt,endedAt=null}=req.body
   const logoFile = req.files?.logo[0]
   let userId
@@ -1256,7 +1254,7 @@ app.post("/experience/post", async (req,res)=>{
     res.status(500).json('Internal server error');
   }})
 
-  app.get("/education/get", async (req,res)=>{
+  app.get("/api/education/get", async (req,res)=>{
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 3;
     const userName = req.query.userName;
@@ -1273,7 +1271,7 @@ app.post("/experience/post", async (req,res)=>{
     res.status(500).json('Internal server error');
   }})
 
-  app.post("/skill/post",async (req,res)=>{
+  app.post("/api/skill/post",async (req,res)=>{
     const {title,compName} = req.body
     let userId
     try {
@@ -1296,7 +1294,7 @@ app.post("/experience/post", async (req,res)=>{
     res.status(500).json('Internal server error');
   }})
 
-  app.get("/skill/get",async (req,res)=>{
+  app.get("/api/skill/get",async (req,res)=>{
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 3;
     const userName = req.query.userName;

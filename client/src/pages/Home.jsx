@@ -22,7 +22,6 @@ export default function Home() {
       console.warn("Invalid token", error);
     }
   }
-  console.log(userName)
   const { data:profile, isLoading:pLoading,} = useQuery({
       queryKey: ['profielInfo', userName],
       queryFn: () => profileInfo(userName),
