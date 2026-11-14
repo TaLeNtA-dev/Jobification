@@ -362,7 +362,7 @@ app.get("/api/refresh", async (req, res) => {
     const token = await createAccessToken({ id: payload.sub, userName: rows[0].userName });
     res.json({ accessToken: token });
   } catch (err) {
-    console.error('Refresh error:', err);
+    console.log('Refresh error:', err);
     res.status(401).json("Refresh token invalid or expired");
   }
 });
@@ -724,7 +724,6 @@ app.get("/c/user/myCompany", async (req, res) => {
   } catch (err) {
     return res.status(401).json('Invalid token');
   }
-
   try {
     const [[company]] = await db.query(
       `SELECT 
@@ -733,11 +732,10 @@ app.get("/c/user/myCompany", async (req, res) => {
        WHERE ca.admin_id = ? AND ca.role = 'owner' LIMIT 1`,
       [currentUserId]
     );
-
     if (!company) {
       return res.status(404).json({ error: 'You are not an owner of any company' });
     }
-
+    
     company.pfp = getImageUrl(company.pfp);
     company.banner = getImageUrl(company.banner);
 
