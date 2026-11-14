@@ -352,7 +352,9 @@ app.post("/signUp", authLimiter, upload.fields([
 
 app.get("/api/refresh", async (req, res) => {
   try {
+    console.log(req.cookies.refreshToken)
     const payload = await verifyRefreshToken(req.cookies.refreshToken);
+    console.log(payload)
     const [rows] = await db.query('SELECT userName FROM users WHERE id = ?', [payload.sub]);
 
     if (rows.length === 0) {
