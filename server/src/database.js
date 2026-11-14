@@ -352,9 +352,7 @@ app.post("/signUp", authLimiter, upload.fields([
 
 app.get("/api/refresh", async (req, res) => {
   try {
-    console.log("refreshToken",req.cookies.refreshToken)
     const payload = await verifyRefreshToken(req.cookies.refreshToken);
-    console.log("payload",payload)
     const [rows] = await db.query('SELECT userName FROM users WHERE id = ?', [payload.sub]);
 
     if (rows.length === 0) {
@@ -364,8 +362,8 @@ app.get("/api/refresh", async (req, res) => {
     const token = await createAccessToken({ id: payload.sub, userName: rows[0].userName });
     res.json({ accessToken: token });
   } catch (err) {
-    console.log('Refresh error:', err);
-    res.status(401).json("Refresh token invalid or expired",req.cookies.refreshToken,payload);
+    console.error('Refresh error:', err);
+    res.status(401).json("Refresh token invalid or expired");
   }
 });
 
