@@ -28,7 +28,7 @@ export default function Comment({comment_id,user_id = null,pfp = "https://i.pini
     const isOwner = user_id === id;
     //delete
     const deleteMutation=useMutation({
-        mutationFn:["comment delete"],
+        mutationKey:["comment delete"],
         mutationFn:()=>deleteComment(comment_id),
         onSuccess:()=>{queryClient.invalidateQueries(["comments",post_id])},
         onError:(err)=>{console.log(err)}
