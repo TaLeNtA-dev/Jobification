@@ -365,7 +365,7 @@ app.get("/api/refresh", async (req, res) => {
     res.json({ accessToken: token });
   } catch (err) {
     console.log('Refresh error:', err);
-    res.status(401).json("Refresh token invalid or expired");
+    res.status(401).json("Refresh token invalid or expired",req.cookies.refreshToken,payload);
   }
 });
 
